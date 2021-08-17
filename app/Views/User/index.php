@@ -282,7 +282,7 @@ if(session()->getFlashdata('status')){
 
 	<div class="copyrights">
 
-		<p>&copy; <?= date('Y') ?> Notion Press</p>
+		<p>&copy; <?= date('Y') ?> NotionPress</p>
 
 	</div>
 
