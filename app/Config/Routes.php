@@ -11,7 +11,6 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
 {
 	require SYSTEMPATH . 'Config/Routes.php';
 }
-
 /**
  * --------------------------------------------------------------------
  * Router Setup
@@ -40,6 +39,23 @@ $routes->get( 'edit/(:num)', 'UserController::edit/$1' );
 $routes->post( 'edit/(:num)', 'UserController::edit/$1' );
 $routes->get( 'delete/(:num)', 'UserController::delete/$1' );
 $routes->get( 'view/(:num)', 'UserController::view/$1' );
+
+// api routes start
+$routes->group('api',function($routes){
+$routes->group('v1',function($routes){
+    
+    $routes->post('user_list', 'ApiController::index' );
+    $routes->post('add', 'ApiController::add_user' );
+    $routes->post('get_user_details', 'ApiController::get_user_details' );
+    $routes->post('edit_user', 'ApiController::edit_user' );
+    $routes->post('delete_user', 'ApiController::delete_user' );
+    
+
+   });
+});
+
+
+//api routes end
 /*
 * --------------------------------------------------------------------
 * Additional Routing
