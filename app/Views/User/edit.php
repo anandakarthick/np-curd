@@ -222,7 +222,8 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Name</label>
-      <input type="hidden" class="form-control" id="inputEmail4" name="id" value="<?php echo $user['id'] ?>">
+	  <input type="hidden" class="form-control" id="inputEmail4" name="id" value="<?php echo $user['id'] ?>">
+	  <input type="hidden" class="form-control" id="inputEmail4" name="user_image" value="<?php echo $user['image'] ?>">
       <input type="text" class="form-control" id="inputEmail4" name="name" placeholder="Name" value="<?php echo $user['name'] ?>">
     </div>
     <div class="form-group col-md-6">
@@ -322,7 +323,7 @@ if(($expolde[0]== 'Telugu') || ($expolde[1]== 'Telugu') || ($expolde[2]== 'Telug
   <div class="form-row">
     <div class="form-group col-md-6">
     
-      <label for="inputPassword4">Image</label>
+      <label for="inputPassword4">Image</label><?php if($user['image']) { ?><img src="<?php echo base_url().'/uploads/'.$user['image'] ?>" style="width:30px;height:30px;border-radius: 50%;" ><?php } ?>
       <input type="file" class="form-control" id="inputPassword4" name="image">
     </div>
     </div>

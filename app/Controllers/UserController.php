@@ -20,9 +20,9 @@ class UserController extends BaseController
         // exit;
         if ( $this->request->getPost( 'submit' ) == true ) {
 
-            $citys = array( 'city'=>implode( ',', $this->request->getPost( 'city' ) ), );
-            $language = array( 'language'=>implode( ',', $this->request->getPost( 'language' ) ), );
-            $img = $this->request->getFiles( 'image' );
+            $citys = array( 'city'=>implode( ',', $this->request->getPost( 'city' ) ) );
+            $language = array( 'language'=>implode( ',', $this->request->getPost( 'language' ) ) );
+            $img = $this->request->getFile( 'image' );
             $user = new User();
             $data = [
                 'name'=>$this->request->getPost( 'name' ),
@@ -54,9 +54,24 @@ class UserController extends BaseController
                 $update_id = $id;
             }
             $user = new User();
+            $file = $this->request->getFile( 'image' );
+            $newName = $this->request->getPost( 'user_image' ) ;
+            if ( $file->getTempName() ) {
 
-            $citys = array( 'city'=>implode( ',', $this->request->getPost( 'city' ) ), );
-            $language = array( 'language'=>implode( ',', $this->request->getPost( 'language' ) ), );
+                if ( $file->isValid() && ! $file->hasMoved() )
+ {
+                    $newName = $file->getRandomName();
+                    $file->move( 'uploads/', $newName );
+
+                }
+            }
+
+            $citys = array( 'city'=>'' );
+            if ( $this->request->getPost( 'city' ) ) {
+                $citys = array( 'city'=>implode( ',', $this->request->getPost( 'city' ) ) );
+
+            }
+            $language = array( 'language'=>implode( ',', $this->request->getPost( 'language' ) ) );
             $data = [
                 'name'=>$this->request->getPost( 'name' ),
                 'address'=>$this->request->getPost( 'address' ),
@@ -67,6 +82,7 @@ class UserController extends BaseController
                 'city'=>$citys['city'],
                 'email_id'=>$this->request->getPost( 'email_id' ),
                 'status'=>1,
+                'image'=>$newName,
                 'state'=>$this->request->getPost( 'state' ),
                 'modified'=>date( 'Y-m-d h:i:s' )
 

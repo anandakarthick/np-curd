@@ -258,7 +258,7 @@ if(session()->getFlashdata('status')){
             ?>
         <tr>
       <td><?php echo $i; ?></td>
-      <td><?php echo $users['name']; ?></td>
+		<td><?php if($users['image']) { ?><img src="<?php echo base_url().'/uploads/'.$users['image'] ?>" style="width:30px;height:30px;border-radius: 50%;" ><?php } ?> <?php echo $users['name']; ?></td>
       <td><?php echo $users['email_id'];?></td>
 	  <td><?php echo $users['mobile_number']; ?></td>
       <td><a href="<?php echo base_url('edit/'.$users['id']); ?>" class="btn btn-success btn-sm">Edit</a>
